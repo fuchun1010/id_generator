@@ -26,11 +26,6 @@ public class LeafController {
     return get(key, segmentService.getId(key));
   }
 
-//  @RequestMapping(value = "/api/snowflake/get/{key}")
-//  public String getSnowflakeID(@PathVariable("key") String key) {
-//    return get(key, snowflakeService.getId(key));
-//  }
-
   @RequestMapping(value = "/api/snowflake/get/{key}")
   public ResponseEntity<Map<String, Long>> getSnowflakeID(@PathVariable("key") String key) {
     long id = Long.parseLong(get(key, snowflakeService.getId(key)));
@@ -38,8 +33,7 @@ public class LeafController {
     body.putIfAbsent("id", id);
     return ResponseEntity.ok(body);
   }
-
-
+  
   private String get(@PathVariable("key") String key, Result id) {
     Result result;
     if (key == null || key.isEmpty()) {
